@@ -21,7 +21,7 @@ if __name__ == '__main__':
     setup(
         name = 'telbot',
         version = '1.0.0',
-        description = 'Hello world application for bot',
+        description = 'telegram report bot',
         long_description = 'bot project',
         author = 'Michael LIM',
         author_email = 'code21032@gmail.com',

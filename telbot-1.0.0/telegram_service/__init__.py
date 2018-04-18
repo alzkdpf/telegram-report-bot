@@ -6,14 +6,19 @@ except ImportError:  # pragma: no cover
 import logging
 
 telegram_logger = None
+token = None
 
 def initialize(config_file):
+    global token
     parser = configparser.RawConfigParser()
     parser.read(config_file)
-    initialize_logging(parser['tel-service']['log_file'])
+
+    initialize_logging(parser.get('tel-service','log_file'))
+    token = parser.get('tel-service','token')
 
 def initialize_logging(log_file):
     global telegram_logger
+    
     formatter = logging.Formatter("%(asctime)s [%(name)s] %(levelname)s: %(message)s")
 
     log_file_handler = logging.FileHandler(log_file)

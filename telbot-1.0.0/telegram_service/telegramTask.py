@@ -10,8 +10,9 @@ from time import sleep
 
 import functools
 
-from telegram_service import telegram_logger
+from telegram_service import telegram_logger, token
 LOGGER = telegram_logger
+TOKEN = token
 
 ### exception Handler ####
 def catch_exception(f):
@@ -84,8 +85,7 @@ class TelegramTask:
     def run(self):
         LOGGER.info("Run the bot. {0}".format(__name__))
 
-        token = 'TOKEN'
-        updater = Updater(token)
+        updater = Updater(TOKEN)
 
         dp = updater.dispatcher
         dp.add_handler(CommandHandler("help",help))

@@ -3,3 +3,7 @@
 /telbot-*/build/
 /telbot-*/venv/
 .log
+*.log
+.pyc
+/__pycache__/
+/telbot-*/telbot.*/
