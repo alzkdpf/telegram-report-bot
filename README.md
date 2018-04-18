@@ -22,7 +22,7 @@ $pip install -r ./install_required.txt
 
 set your token value in '/config/service.cfg'
 
-* run
+#### run
 ```type:shell
 $cd telbot-1.0.0
 $python ./bootstrap.py
