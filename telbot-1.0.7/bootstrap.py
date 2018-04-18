@@ -1,26 +1,23 @@
 import sys, signal
-sys.path.append('src/main/python')
 
 from multiprocessing import Pool, Process
 import threading
+
+## TODO: 디렉토리 확인 및 없을 경우 생성하기
+os.system('mkdir -p ./log')
+os.system('touch ./log/telegram_bot.log')
 
 from telegram_service.app import app
 from telegram_service import initialize
 from telegram_service.telegramTask import TelegramTask
 
-
-import logging
-
-from telegram_service import telegram_logger
-LOGGER = telegram_logger
-
 def flaskStart():
-    LOGGER.info('app run')
+    print('app run')
     # app.debug = True
     app.run(host='localhost',port=5001)
 
 def telegramMonitor():
-    LOGGER.info('task run')
+    print('task run')
     telegram_task = TelegramTask()
     telegram_task.run()
 
@@ -37,6 +34,7 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGINT, signal_handler)
 print('Service exit Ctrl+C press')
 ## your code
+
 taskRun()
 
 forever = threading.Event()
