@@ -1,5 +1,4 @@
 /telbot-*/dist/
-/telbot-*/config/
 /telbot-*/build/
 /telbot-*/venv/
 .log
