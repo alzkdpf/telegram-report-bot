@@ -1,0 +1,11 @@
+setup.py
+telbot.egg-info/PKG-INFO
+telbot.egg-info/SOURCES.txt
+telbot.egg-info/dependency_links.txt
+telbot.egg-info/namespace_packages.txt
+telbot.egg-info/requires.txt
+telbot.egg-info/top_level.txt
+telbot.egg-info/zip-safe
+telegram_service/__init__.py
+telegram_service/app.py
+telegram_service/telegramTask.py
