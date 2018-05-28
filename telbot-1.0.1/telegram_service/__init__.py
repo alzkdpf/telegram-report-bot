@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 try:  # pragma: no cover
     import ConfigParser
     configparser = ConfigParser

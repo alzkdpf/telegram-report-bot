@@ -20,7 +20,7 @@ class install(_install):
 if __name__ == '__main__':
     setup(
         name = 'telbot',
-        version = '1.0.0',
+        version = '1.0.1',
         description = 'telegram report bot',
         long_description = 'bot project',
         author = 'Michael LIM',
