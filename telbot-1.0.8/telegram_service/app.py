@@ -7,6 +7,8 @@ from werkzeug import secure_filename
 
 from telegram import Bot
 
+from operator import eq
+
 TOKEN = token
 LOGGER = telegram_logger
 
@@ -32,7 +34,7 @@ def index():
 
 @app.route('/up', methods=['GET','POST'])
 def upload():
-    if request.url_root != 'http://192.168.0.106'
+    if eq(request.url_root,'http://192.168.0.106') == False:
         LOGGER.info('domain invalide')
         return
 

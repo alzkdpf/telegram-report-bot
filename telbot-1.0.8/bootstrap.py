@@ -1,5 +1,6 @@
 import os
 import sys, signal
+sys.path.append('src/main/python')
 
 from multiprocessing import Pool, Process
 import threading
@@ -8,9 +9,9 @@ import threading
 os.system('mkdir -p ./log')
 os.system('touch ./log/telegram_bot.log')
 
+from telegram_service.telegramTask import TelegramTask
 from telegram_service.app import app
 from telegram_service import initialize
-from telegram_service.telegramTask import TelegramTask
 
 def flaskStart():
     print('app run')
