@@ -61,6 +61,8 @@ def upload():
             # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
             # option 2. static folder
+            if not os.path.exists(app.static_folder):
+                os.makedirs(app.static_folder)
             file.save(os.path.join(app.static_folder, filename))
             __sendFilelinkToUsers(request, filename)
             # return redirect(url_for('upload',
