@@ -16,7 +16,7 @@ from telegram_service import initialize
 def flaskStart():
     print('app run')
     # app.debug = True
-    app.run(host='localhost',port=5001)
+    app.run(host='0.0.0.0',port=5001)
 
 def telegramMonitor():
     print('task run')

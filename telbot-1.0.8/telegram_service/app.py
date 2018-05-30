@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
-from telegram_service import telegram_logger, token
+import json
+import hashlib
+
+from telegram_service import telegram_logger, token, upload_domain
 from flask import Flask, request, redirect, url_for
 from flask import send_from_directory
 from werkzeug import secure_filename
@@ -11,6 +14,7 @@ from operator import eq
 
 TOKEN = token
 LOGGER = telegram_logger
+UPLOAD_DOMAIN = upload_domain
 
 UPLOAD_FOLDER = '/path/to/the/uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'apk'])
@@ -35,14 +39,22 @@ def index():
 @app.route('/up', methods=['GET','POST'])
 def upload():
     
+    print('upload request')
+    
     if request.method == 'POST':
         file = request.files['file']
+
+        LOGGER.info('file upload request')
+
         if file.filename == '':
             flash('No selected file')
+            LOGGER.info('No selected file')
             return redirect(request.url)
         
         if file and allowed_file(file.filename):
+            print('>>',file.filename)
             filename = secure_filename(file.filename)
+            # filename = hashlib.sha1(file.filename.encode('utf-8')).hexdigest()
 
             LOGGER.info('secure filename : {}'.format(filename))
             # option 1. upload custom folder
@@ -51,11 +63,12 @@ def upload():
             # option 2. static folder
             file.save(os.path.join(app.static_folder, filename))
             __sendFilelinkToUsers(request, filename)
-            return redirect(url_for('upload',
-                                    filename=filename))
+            # return redirect(url_for('upload',
+            #                         filename=filename))
+            return json.dumps({'result': filename})
     
     LOGGER.info("->>{}".format(request.url_root))
-    if eq(request.url_root,'http://192.168.0.106') == False:
+    if eq(request.url_root, UPLOAD_DOMAIN) == False:
         LOGGER.info('domain invalide')
         return redirect(requiest.url_root)
         

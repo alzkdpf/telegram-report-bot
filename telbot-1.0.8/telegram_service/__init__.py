@@ -8,14 +8,20 @@ import logging
 
 telegram_logger = None
 token = None
+upload_domain = None
+host = None
 
 def initialize(config_file):
     global token
+    global upload_domain
+    global host
+
     parser = configparser.RawConfigParser()
     parser.read(config_file)
 
-    initialize_logging(parser.get('tel-service','log_file'))
     token = parser.get('tel-service','token')
+    upload_domain = parser.get('tel-service','upload_domain')
+    initialize_logging(parser.get('tel-service','log_file'))
 
 def initialize_logging(log_file):
     global telegram_logger
