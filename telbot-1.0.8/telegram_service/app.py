@@ -34,10 +34,7 @@ def index():
 
 @app.route('/up', methods=['GET','POST'])
 def upload():
-    if eq(request.url_root,'http://192.168.0.106') == False:
-        LOGGER.info('domain invalide')
-        return
-
+    
     if request.method == 'POST':
         file = request.files['file']
         if file.filename == '':
@@ -56,6 +53,12 @@ def upload():
             __sendFilelinkToUsers(request, filename)
             return redirect(url_for('upload',
                                     filename=filename))
+    
+    LOGGER.info("->>{}".format(request.url_root))
+    if eq(request.url_root,'http://192.168.0.106') == False:
+        LOGGER.info('domain invalide')
+        return redirect(requiest.url_root)
+        
     return '''
         <!doctype html>
         <title>Upload new File</title>
