@@ -1,6 +1,9 @@
 Telegram Bot
 ----
 
+<img src="https://img.shields.io/badge/python-scrypt-green"/>
+python telegram bot 연동 샘플 
+
 #### setup
 
 * insatll default virtual env
